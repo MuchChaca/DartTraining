@@ -1,29 +1,26 @@
 @Tags(const ['aot'])
 @TestOn('browser')
-
 import 'package:angular/angular.dart';
 import 'package:angular_test/angular_test.dart';
 import 'package:test/test.dart';
-
 import 'package:angular_tour_of_heroes/app_component.dart';
-
-import 'app_component_po.dart';
-
 @AngularEntrypoint()
 void main() {
   final testBed = new NgTestBed<AppComponent>();
   NgTestFixture<AppComponent> fixture;
-  AppPO pageObject;
-
   setUp(() async {
     fixture = await testBed.create();
-    pageObject = await fixture.resolvePageObject(AppPO);
   });
-
   tearDown(disposeAnyRunningTest);
-
-  test('Default greeting', () async {
-    // Change it: Check content of the page using pageObject.
-    expect(pageObject, isNotNull);
+  test('Default greeting', () {
+    expect(fixture.text, 'Hello Angular');
+  });
+  test('Greet world', () async {
+    await fixture.update((c) => c.name = 'World');
+    expect(fixture.text, 'Hello World');
+  });
+  test('Greet world HTML', () {
+    final html = fixture.rootElement.innerHtml;
+    expect(html, '<h1>Hello Angular</h1>');
   });
 }
