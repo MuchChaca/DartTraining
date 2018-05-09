@@ -2,16 +2,7 @@
 
 <br>
 
-<div *ngIf="selectedHero != null">
-  <h2>{{selectedHero.name}} details!</h2>
-  
-  <div><label>id: </label>{{selectedHero.id}}</div>
-  
-  <div>
-    <label>Name: </label>
-    <input [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
-</div>
+<hero-detail [hero]="selectedHero"></hero-detail>
 
 <br>
 <!-- ==================================== -->
