@@ -1,5 +1,7 @@
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
+import 'src/hero.dart';
+import 'src/mock_heroes.dart';
 
 @Component(
 	selector: 'app-component',
@@ -7,7 +9,8 @@ import 'package:angular_forms/angular_forms.dart';
 	// template: '''
 	// <h1>{{title}}</h1> <h2>{{hero}} details!</h2>
 	// ''',
-	directives: const [formDirectives],
+	directives: const [CORE_DIRECTIVES, formDirectives],
+  styleUrls: const ['app_component.css'],
 )
 
 
@@ -15,13 +18,13 @@ import 'package:angular_forms/angular_forms.dart';
 class AppComponent {
 	final title = 'Tour of Heroes';
 
-	var hero = new Hero(1, 'Windstorm');
+	// Hero h1 = new Hero(1, "Wildstorm");
+
+	List<Hero> heroes = mockHeroes;
+
+	Hero selectedHero;
+
+	// onSelect(Hero) event click handler
+	void onSelect(Hero hero) => selectedHero = hero;
 }
 
-
-class Hero {
-	final int id;
-	String name;
-
-	Hero(this.id, this.name);
-}
