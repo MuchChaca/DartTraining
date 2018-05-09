@@ -1,9 +1,10 @@
 import 'package:angular/angular.dart';
+import 'dart:async';
 
 import 'hero.dart';
 import 'mock_heroes.dart';
 
 @Injectable()
 class HeroService{
-	List<Hero> getHeroes() => mockHeroes;
+	Future<List<Hero>> getHeroes() async => mockHeroes;
 }

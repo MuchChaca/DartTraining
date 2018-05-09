@@ -1,4 +1,6 @@
 import 'package:angular/angular.dart';
+import 'dart:async';
+
 import 'src/hero.dart';
 import 'src/mock_heroes.dart';
 import 'src/hero_detail_component.dart';
@@ -33,7 +35,18 @@ class AppComponent implements OnInit {
 	void onSelect(Hero hero) => selectedHero = hero;
 
 	// getter for heroes
-	void getHeroes() => heroes = _heroService.getHeroes();
+  //* synchronous
+  // void getHeroes() => heroes = _heroService.getHeroes();
+
+	// getter for heroes
+  //* asynchronous
+	// void getHeroes() {
+  // _heroService.getHeroes().then((heroes) => this.heroes = heroes);
+  // }
+  //* async|wait
+  Future<Null> getHeroes() async {
+    heroes = await _heroService.getHeroes();
+  }
 
 	// OnInit implementation
 	void ngOnInit() => getHeroes();
