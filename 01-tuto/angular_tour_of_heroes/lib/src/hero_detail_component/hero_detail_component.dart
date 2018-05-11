@@ -11,6 +11,7 @@ import '../hero_service/hero_service.dart';
 		selector: 'hero-detail',
 		templateUrl: 'hero_detail_component.html',
 		directives: const [CORE_DIRECTIVES, formDirectives],
+    styleUrls: const ['hero_detail_component.css'],
 )
 class HeroDetailComponent implements OnInit {
 

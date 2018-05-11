@@ -9,6 +9,7 @@ import 'src/hero_detail_component/hero_detail_component.dart';
 @Component(
   selector: 'my-app',
   templateUrl: 'app_component.html',
+  styleUrls: const ['app_component.css'],
   directives: const [ROUTER_DIRECTIVES],
   providers: const [HeroService],
 )

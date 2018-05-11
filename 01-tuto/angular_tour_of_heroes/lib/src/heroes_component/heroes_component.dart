@@ -1,11 +1,10 @@
 import 'package:angular/angular.dart';
-// import 'package:angular_router/angular_router.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'dart:async';
+import 'package:angular_router/angular_router.dart';
 
 import '../hero.dart';
 import '../hero_service/mock_heroes.dart';
-// import '../heroes_component/heroes_component.dart';
 import '../hero_service/hero_service.dart';
 
 // void main() {
@@ -22,17 +21,22 @@ import '../hero_service/hero_service.dart';
 @Component(
 	selector: 'my-heroes',
 	templateUrl: 'heroes_component.html',
+  pipes: const [COMMON_PIPES],
 	// template: '''
 	// <h1>{{title}}</h1> <h2>{{hero}} details!</h2>
 	// ''',
-	directives: const [CORE_DIRECTIVES, formDirectives],
-	styleUrls: const ['heroes_component.css'],
+	directives: const [CORE_DIRECTIVES,formDirectives],
+	styleUrls: const ['heroes_component.css']
 )
 class HeroesComponent implements OnInit {
 	// final title = 'Tour of Heroes';
 	final HeroService _heroService;
+  final Router _router;
 
-	HeroesComponent(this._heroService);
+	HeroesComponent(
+    this._heroService,
+    this._router,
+    );
 
 	// Hero h1 = new Hero(1, "Wildstorm");
 
@@ -56,6 +60,11 @@ class HeroesComponent implements OnInit {
   Future<Null> getHeroes() async {
     heroes = await _heroService.getHeroes();
   }
+
+  Future<Null> gotoDetail() => _router.navigate([
+    'HeroDetail',
+    {"id": selectedHero.id.toString()},
+  ]);
 
   // // test slow connection
   // Future<List<Hero>> getHeroesSlowly() {
