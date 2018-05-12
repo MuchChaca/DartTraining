@@ -78,6 +78,19 @@ class HeroService{
     }
   }
 
+  // delete deletes a hero from the mocking api server
+  Future<Null> delete(int id) async {
+    try {
+      final url = '$_heroesUrl/$id';
+      await _http.delete(
+        url,
+        headers: _headers,
+      );
+    } catch (ex) {
+      throw _handleError(ex);
+    }
+  }
+
   Exception _handleError(dynamic e) {
     print(e); // for demo purposes only
     return new Exception('Server error; cause: $e');

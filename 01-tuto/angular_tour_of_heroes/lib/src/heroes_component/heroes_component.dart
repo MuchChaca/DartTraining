@@ -82,5 +82,12 @@ class HeroesComponent implements OnInit {
     heroes.add(await _heroService.create(name));
     selectedHero = null; // why?
   }
+
+  // delete is the click event to ``Delete`` a hero from the mocking api server
+  Future<Null> delete(Hero hero) async {
+    await _heroService.delete(hero.id);
+    heroes.remove(hero);
+    if(selectedHero == hero) selectedHero == null;
+  }
 }
 
