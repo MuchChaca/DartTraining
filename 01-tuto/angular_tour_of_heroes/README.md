@@ -18,7 +18,7 @@ The Tour of Heroes app covers the core fundamentals of Angular. You’ll build a
 
 You’ll learn enough core Angular to get started and gain confidence that Angular can do whatever you need it to do. You’ll cover a lot of ground at an introductory level, and you’ll find many links to pages with greater depth.  
   
-When you’re done with this tutorial, the app will look like this live example (view source).  
+When you’re done with this tutorial, the app will look like this [live example](https://webdev.dartlang.org/examples/toh-6/) ([view source](https://github.com/angular-examples/toh-6/tree/4.x)).  
 
 ## The end game
 Here’s a visual idea of where this tutorial leads, beginning with the “Dashboard” view and the most heroic heroes:
@@ -51,3 +51,5 @@ Here’s the app in action:
 You’ll build the Tour of Heroes app, step by step. Each step is motivated with a requirement that you’ve likely met in many apps. Everything has a reason.
 
 Along the way, you’ll become familiar with many of the core fundamentals of Angular.
+
+[The Starter App](https://webdev.dartlang.org/angular/tutorial/toh-pt0)
