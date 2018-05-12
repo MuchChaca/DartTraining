@@ -74,5 +74,13 @@ class HeroesComponent implements OnInit {
 	// OnInit implementation
 	void ngOnInit() => getHeroes();
 	// void ngOnInit() => getHeroesSlowly(); // test slow connections
+
+  // add is the click event on the ``Add`` button from the heroes_component
+  Future<Null> add(String name) async {
+    name = name.trim();
+    if (name.isEmpty) return;
+    heroes.add(await _heroService.create(name));
+    selectedHero = null; // why?
+  }
 }
 

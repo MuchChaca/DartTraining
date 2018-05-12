@@ -64,6 +64,20 @@ class HeroService{
     }
   }
 
+  // create creates a new hero in the mocking api server
+  Future<Null> create(String name) async {
+    try {
+      final resp = await _http.post(
+        _heroesUrl,
+        headers: _headers,
+        body: JSON.encode({'name': name}),
+      );
+      return new Hero.fromJson(_extractData(resp));
+    } catch (ex) {
+      throw _handleError(ex);
+    }
+  }
+
   Exception _handleError(dynamic e) {
     print(e); // for demo purposes only
     return new Exception('Server error; cause: $e');
