@@ -35,6 +35,12 @@ class HeroDetailComponent implements OnInit {
   // To navigate somewhere else, users can click one of the two links in the AppComponent or click the browser’s back button. 
   // Now add a third option, a goBack() method that navigates backward one step in the browser’s history stack using the Location service you injected previously.
   void goBack() => _location.back();
+
+  // In order to save changes made to a hero to the mocking api server
+  Future<Null> save() async {
+    await _heroService.update(hero);
+    goBack();
+  }
 }
 
 

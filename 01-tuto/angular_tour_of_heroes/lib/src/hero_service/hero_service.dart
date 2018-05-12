@@ -15,6 +15,8 @@ class HeroService{
 
   HeroService(this._http);
 
+  static final _headers = {'Content-Type': 'application/json'};
+
 
   //* OLD - pre-api
 	// Future<List<Hero>> getHeroes() async => mockHeroes;
@@ -34,8 +36,33 @@ class HeroService{
 
   dynamic _extractData(Response resp) => JSON.decode(resp.body)['data'];
 
-  Future<Hero> getHero(int id) async => 
-    (await getHeroes()).firstWhere((hero) => hero.id == id);
+  // // @deprecated - before using mock service
+  // Future<Hero> getHero(int id) async => 
+  //   (await getHeroes()).firstWhere((hero) => hero.id == id);
+
+  Future<Hero> getHero(int id) async {
+    try {
+      final resp = await _http.get('$_heroesUrl/$id');
+      return new Hero.fromJson(_extractData(resp));
+    } catch (ex) {
+      throw _handleError(ex);
+    }
+  }
+
+  // update Updates a hero in the mocking api server
+  Future<Null> update(Hero hero) async {
+    try {
+      final url = '$_heroesUrl/${hero.id}';
+      final resp = await _http.put(
+        url, 
+        headers: _headers, 
+        body: JSON.encode(hero),
+        );
+      return new Hero.fromJson(_extractData(resp));
+    } catch (ex) {
+      throw _handleError(ex);
+    }
+  }
 
   Exception _handleError(dynamic e) {
     print(e); // for demo purposes only
